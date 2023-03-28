@@ -11,19 +11,10 @@
     <title>Customers</title>
 </head>
 <body>
-    <h3>Customer Data</h3>
+<div class="p-3 mb-2 bg-secondary text-white">
+    <h3>Jumpman Customer Data</h3>
     <br>
-   <!-- <ul>
-    @foreach($customers as $customer)
-        <li>  {{ $customer->firstname }} {{ $customer->lastname }}</li>
-        <li>  {{ $customer->email }}</li>
-        <li>  {{ $customer->contactNumber }}</li>
-        <li>  {{ $customer->address }}</li>
-        <br>
-        @endforeach
-    </ul>
-    -->
-    <table class="table table-striped">
+    <table class="table table-striped table-dark">
     <thead>
     <tr class="thead-dark">
       <th scope="col">Id</th>
@@ -36,7 +27,7 @@
   </thead>
   <tbody>
     @if(Session::has ('success'))
-    <div class="alert alert-warning" role="alert">
+    <div class="alert alert-danger" role="alert">
       {{ Session::get('success') }}
       </div>
       @endif
@@ -59,6 +50,7 @@
        @endforeach
   </tbody>
 </table>
+</div>
 </body>
 </html>
  

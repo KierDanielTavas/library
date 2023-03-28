@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 
 class CustomerController extends Controller
@@ -46,7 +47,8 @@ class CustomerController extends Controller
         $req->validate([
             "lastName"=>['required','min:3'],
             "firstName"=>['required','min:4'],
-            "email"=>['required','min:4'],
+            "email"=>['required','min:4', 
+            Rule::unique('users','email'),],
             "contactNumber"=>['required','min:4'],
             "address"=>['required','min:4'],
         ]);
@@ -58,7 +60,7 @@ class CustomerController extends Controller
             $data->address=$req->address;
 
             $data->save();
-            return redirect('/')-> with('success', 'A record has been edited successfully!');
+            return redirect('/')-> with('success', 'A customer has been edited successfully!');
 
 
         

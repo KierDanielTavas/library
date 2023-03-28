@@ -1,5 +1,5 @@
 <footer>
-    Copyright 2023
+  ®Copyright 2023
   </footer>  
   </div>
 

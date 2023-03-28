@@ -16,7 +16,7 @@ use App\Http\Controllers\CustomerController;
 */
 
 Route::get('/',[CustomerController::class, 'index']);
-Route::get('/delete/{id}', [UserController::class, 'delete']);
+Route::get('/delete/{id}', [UserController::class, 'delete'])->middleware('auth');
 
 Route::get('/addCustomer',[CustomerController::class, 'addCustomer'])->middleware('auth');
 Route::post('/saveCustomer', [CustomerController::class, 'saveCustomer']);

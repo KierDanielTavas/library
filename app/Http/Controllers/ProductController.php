@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 
@@ -16,17 +19,29 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $data = DB::table("products")->get();
+        return view('product.index',['products'=>$data]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function addProduct(){
+        return view('product.add');
+    }
+
+    public function saveProduct(Request $req){
+        //dd($req);
+        $validated=$req->validate([
+            "productName"=>['required','min:4'],
+            "quantity"=>['required','min:4'],
+            "price"=>['required','min:4'],
+
+           
+        ]);
+
+        //dd($validated);
+        $data=Customer::create($validated);
+
+        return redirect("/")->with('success', 'A product has been added!');
+    
     }
 
     /**
@@ -50,38 +65,25 @@ class ProductController extends Controller
     {
         //
     }
+    public function edit($id){
+        $data=Product::findOrFail($id);
+        return view('product.edit',['product'=>$data]);
+        return redirect('/')-> with('success', 'A product has been edited successfully!');
+     }
+ 
+     public function updateProduct(Request $req){
+        //dd($req);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
+       
+            $data=Product::find($req->id);
+           
+            
+            $data->productName=$req->productName;
+            $data->quantity=$req->quantity;
+            $data->price=$req->price;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateProductRequest $request, Product $product)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        //
-    }
+            $data->save();
+            return redirect('/')-> with('success', 'A product has been edited successfully!');
+ 
+     }
 }

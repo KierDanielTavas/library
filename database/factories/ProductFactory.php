@@ -17,7 +17,9 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'productName' => fake()->catchPhrase(),
+            'quantity' => fake()->biasedNumberBetween($min = 0, $max = 50, $function = 'sqrt'),
+            'price' => fake()->randomFloat($nbMaxDecimals = 2, $min = 100, $max = 1000),
         ];
     }
 }

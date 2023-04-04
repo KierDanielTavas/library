@@ -3,7 +3,7 @@
       <a class="nav-link active" aria-current="page" href="/">Home</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" href={{"/addCustomer"}}>Add Customer</a>
+    <a class="nav-link" href={{"/addProduct"}}>Add Product</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Profile</a>

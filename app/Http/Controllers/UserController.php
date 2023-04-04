@@ -58,14 +58,14 @@ class UserController extends Controller
     }
 
     public function home(){
-        return view ('customers.index');
+        return view ('products.index');
     }
 
     public function delete($id){
-        $delete = DB::table('customers')
+        $delete = DB::table('products')
         ->where("id","=", $id)
         ->delete();
-        return redirect('/')-> with('success','A record has been deleted successfully!');
+        return redirect('/')-> with('success','A product has been deleted successfully!');
     }
     
 

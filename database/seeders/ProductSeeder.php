@@ -14,6 +14,6 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\User::factory(50)->create();
     }
 }
